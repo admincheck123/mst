@@ -33,10 +33,8 @@
     .sig-box{width:220px;height:80px;border-bottom:2px dashed #ccc;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;font-size:.9rem;color:var(--muted)}
     .stamp-placeholder{width:120px;height:120px;border-radius:50%;border:3px dashed #c62828;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem}
 
-    /* watermark for sample */
     .watermark{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-30deg);font-size:40px;color:rgba(200,30,30,.06);pointer-events:none;z-index:1}
 
-    /* Responsive */
     @media(max-width:720px){
       .label{width:40%}
       header{flex-direction:column;align-items:flex-start;gap:8px}
@@ -46,7 +44,6 @@
       .image-slot{height:180px}
     }
 
-    /* Print styles */
     @media print{
       body{background:white}
       .container{max-width:210mm;margin:0;padding:0}
@@ -75,33 +72,16 @@
 
       <div class="content">
         <table>
-          <tr>
-            <td class="label">Tên đơn vị</td>
-            <td class="value">DANANGSALE</td>
-          </tr>
-          <tr>
-            <td class="label">Mã số thuế (CN)</td>
-            <td class="value">8760716327</td>
-          </tr>
-          <tr>
-            <td class="label">Ngày cấp</td>
-            <td class="value">13-06-2022</td>
-          </tr>
-          <tr>
-            <td class="label">Cơ quan thuế</td>
-            <td class="value">Quận Thanh Khê - Đội Thuế liên huyện Thanh Khê - Liên Chiểu</td>
-          </tr>
-          <tr>
-            <td class="label">Mục đích hoạt động</td>
-            <td class="value">Cửa hàng kinh doanh online (Website: danangsale.vn)</td>
-          </tr>
+          <tr><td class="label">Tên đơn vị</td><td class="value">DANANGSALE</td></tr>
+          <tr><td class="label">Mã số thuế (CN)</td><td class="value">8760716327</td></tr>
+          <tr><td class="label">Ngày cấp</td><td class="value">13-06-2022</td></tr>
+          <tr><td class="label">Cơ quan thuế</td><td class="value">Quận Thanh Khê - Đội Thuế liên huyện Thanh Khê - Liên Chiểu</td></tr>
+          <tr><td class="label">Mục đích hoạt động</td><td class="value">Cửa hàng kinh doanh online (Website: danangsale.vn)</td></tr>
         </table>
 
         <div style="margin-top:6px">
           <div style="font-weight:700;margin-bottom:8px;color:var(--muted)">Hình ảnh (để in kèm báo cáo)</div>
-          <div class="image-slot" id="imageSlot">
-            <span id="imagePlaceholder">Kéo/thả hoặc chọn ảnh (kích thước tối ưu 800x600)</span>
-          </div>
+          <div class="image-slot" id="imageSlot"><span id="imagePlaceholder">Kéo/thả hoặc chọn ảnh (kích thước tối ưu 800x600)</span></div>
           <div class="actions">
             <input type="file" id="imgInput" accept="image/*">
             <button id="printBtn">In / Xuất PDF</button>
@@ -126,8 +106,8 @@
           </div>
 
           <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-            <div class="stamp-placeholder" style="border:3px solid #c62828;color:#c62828;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;">Mộc đỏ mẫu<br><small style='color:#c62828;font-size:12px'></small></div>
-            <div style="font-size:.85rem;color:var(--muted)">Dấu mộc</div>
+            <div class="stamp-placeholder" style="border:3px solid #c62828;color:#c62828;font-weight:700;text-align:center;">Mộc đỏ</div>
+            <div style="font-size:.85rem;color:var(--muted)"></div>
           </div>
         </div>
 
@@ -136,13 +116,8 @@
   </div>
 
   <script>
-    // Set today's date
-    document.getElementById('today').textContent = new Date().toLocaleDateString('vi-VN');
-
     const imgInput = document.getElementById('imgInput');
     const imageSlot = document.getElementById('imageSlot');
-    const imagePlaceholder = document.getElementById('imagePlaceholder');
-    const stampPlaceholder = document.getElementById('stampPlaceholder');
 
     imgInput.addEventListener('change', e => {
       const f = e.target.files[0];
@@ -151,7 +126,6 @@
       imageSlot.innerHTML = '<img src="'+url+'" alt="Ảnh chọn">';
     });
 
-    // Allow drop
     imageSlot.addEventListener('dragover', ev => ev.preventDefault());
     imageSlot.addEventListener('drop', ev => {
       ev.preventDefault();
@@ -161,25 +135,20 @@
       imageSlot.innerHTML = '<img src="'+url+'" alt="Ảnh thả vào">';
     });
 
-    // Print / Export PDF button
     document.getElementById('printBtn').addEventListener('click', () => {
-      // Note: printing dialog allows saving as PDF in most browsers
       window.print();
     });
 
-    // Download HTML (save current report as .html file)
     document.getElementById('downloadHtml').addEventListener('click', () => {
       const content = '<!doctype html>' + document.documentElement.outerHTML;
       const blob = new Blob([content], {type: 'text/html'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url; a.download = 'bao-cao-danangsale-mau.html';
+      a.href = url;
+      a.download = 'bao-cao-danangsale.html';
       a.click();
       URL.revokeObjectURL(url);
     });
-
-    // Help text in console for replacing signature/stamp safely
-    console.log('LƯU Ý: Đây là mẫu. Để chèn chữ ký/con dấu chính thức, thay thế phần .sig-box và .stamp-placeholder bằng thẻ <img src="path-to-scan.png"> có ảnh mộc đỏ và chữ ký thật.');
   </script>
 </body>
 </html>
