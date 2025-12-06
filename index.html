@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mẫu báo cáo - Thành lập công ty cá nhân (danangsale)</title>
+  <style>
+    :root{--accent:#c62828;--paper:#fff;--muted:#666}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Helvetica Neue", Arial; margin:0; background:#f4f6f8; color:#111}
+    .container{max-width:900px;margin:20px auto;padding:20px}
+    .paper{background:var(--paper);padding:28px;border-radius:8px;box-shadow:0 6px 20px rgba(16,24,40,.08)}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:64px;height:64px;background:linear-gradient(135deg,#e3f2fd,#bbdefb);display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:700;color:#075a9a}
+    h1{font-size:1.1rem;margin:0}
+    .meta{font-size:.95rem;color:var(--muted)}
+
+    .content{margin-top:18px}
+    table{width:100%;border-collapse:collapse;margin-bottom:12px}
+    td{padding:8px 6px;vertical-align:top}
+    .label{width:220px;color:var(--muted);font-weight:600}
+    .value{font-weight:600}
+
+    .image-slot{width:100%;height:240px;border:2px dashed #ddd;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fafafa}
+    .image-slot img{max-width:100%;max-height:100%;object-fit:contain}
+    .actions{display:flex;gap:12px;align-items:center;margin-top:10px}
+    button{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:600}
+    button.secondary{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+
+    .foot{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:18px}
+    .signature{display:flex;gap:14px;align-items:flex-end}
+    .sig-box{width:220px;height:80px;border-bottom:2px dashed #ccc;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;font-size:.9rem;color:var(--muted)}
+    .stamp-placeholder{width:120px;height:120px;border-radius:50%;border:3px dashed #c62828;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem}
+
+    /* watermark for sample */
+    .watermark{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-30deg);font-size:40px;color:rgba(200,30,30,.06);pointer-events:none;z-index:1}
+
+    /* Responsive */
+    @media(max-width:720px){
+      .label{width:40%}
+      header{flex-direction:column;align-items:flex-start;gap:8px}
+      .foot{flex-direction:column;align-items:flex-start}
+      .signature{flex-direction:column;align-items:flex-start}
+      .stamp-placeholder{width:100px;height:100px}
+      .image-slot{height:180px}
+    }
+
+    /* Print styles */
+    @media print{
+      body{background:white}
+      .container{max-width:210mm;margin:0;padding:0}
+      .paper{box-shadow:none;border-radius:0;padding:20mm}
+      .watermark{display:none}
+      button, .actions, input[type=file]{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="watermark">BẢN MẪU - KHÔNG PHẢI TÀI LIỆU CHÍNH THỨC</div>
+  <div class="container">
+    <div class="paper" id="report">
+      <header>
+        <div class="brand">
+          <div class="logo">D</div>
+          <div>
+            <h1>Báo cáo thành lập - Công ty cá nhân</h1>
+            <div class="meta">Mục đích: Cửa hàng kinh doanh online trên web <a href="https://danangsale.vn" target="_blank">danangsale.vn</a></div>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="meta">Trạng thái: <strong>Đang Hoạt Động</strong></div>
+        </div>
+      </header>
+
+      <div class="content">
+        <table>
+          <tr>
+            <td class="label">Tên đơn vị</td>
+            <td class="value">DANANGSALE</td>
+          </tr>
+          <tr>
+            <td class="label">Mã số thuế (CN)</td>
+            <td class="value">8760716327</td>
+          </tr>
+          <tr>
+            <td class="label">Ngày cấp</td>
+            <td class="value">13-06-2022</td>
+          </tr>
+          <tr>
+            <td class="label">Cơ quan thuế</td>
+            <td class="value">Quận Thanh Khê - Đội Thuế liên huyện Thanh Khê - Liên Chiểu</td>
+          </tr>
+          <tr>
+            <td class="label">Mục đích hoạt động</td>
+            <td class="value">Cửa hàng kinh doanh online (Website: danangsale.vn)</td>
+          </tr>
+        </table>
+
+        <div style="margin-top:6px">
+          <div style="font-weight:700;margin-bottom:8px;color:var(--muted)">Hình ảnh (để in kèm báo cáo)</div>
+          <div class="image-slot" id="imageSlot">
+            <span id="imagePlaceholder">Kéo/thả hoặc chọn ảnh (kích thước tối ưu 800x600)</span>
+          </div>
+          <div class="actions">
+            <input type="file" id="imgInput" accept="image/*">
+            <button id="printBtn">In / Xuất PDF</button>
+            <button class="secondary" id="downloadHtml">Tải HTML</button>
+          </div>
+        </div>
+
+        <div style="margin-top:18px">
+          <div style="font-weight:700;margin-bottom:6px;color:var(--muted)">Ghi chú</div>
+          <div style="color:#333;line-height:1.45">Dấu mộc <strong>có tác dụng</strong> khi in bản hợp đồng ra <strong>Không</strong> cần phải đóng dấu.</div>
+        </div>
+
+        <div class="foot">
+          <div class="signature">
+            <div>
+              <div class="sig-box"><div style="font-family: 'Brush Script MT', cursive; font-size:26px; color:#c62828;">Trần Thanh Duy<br><small style='font-size:14px'>(Chữ ký mẫu – Người đại diện)</small></div></div>
+              <div style="text-align:center;margin-top:6px;font-size:.85rem;color:var(--muted)">Người đại diện</div>
+            </div>
+            <div>
+              <div class="sig-box">DANANGSALE<br><small style="color:var(--muted)">Tên đơn vị</small></div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+            <div class="stamp-placeholder" style="border:3px solid #c62828;color:#c62828;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;">Mộc đỏ mẫu<br><small style='color:#c62828;font-size:12px'></small></div>
+            <div style="font-size:.85rem;color:var(--muted)">Dấu mộc</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Set today's date
+    document.getElementById('today').textContent = new Date().toLocaleDateString('vi-VN');
+
+    const imgInput = document.getElementById('imgInput');
+    const imageSlot = document.getElementById('imageSlot');
+    const imagePlaceholder = document.getElementById('imagePlaceholder');
+    const stampPlaceholder = document.getElementById('stampPlaceholder');
+
+    imgInput.addEventListener('change', e => {
+      const f = e.target.files[0];
+      if (!f) return;
+      const url = URL.createObjectURL(f);
+      imageSlot.innerHTML = '<img src="'+url+'" alt="Ảnh chọn">';
+    });
+
+    // Allow drop
+    imageSlot.addEventListener('dragover', ev => ev.preventDefault());
+    imageSlot.addEventListener('drop', ev => {
+      ev.preventDefault();
+      const f = ev.dataTransfer.files[0];
+      if (!f) return;
+      const url = URL.createObjectURL(f);
+      imageSlot.innerHTML = '<img src="'+url+'" alt="Ảnh thả vào">';
+    });
+
+    // Print / Export PDF button
+    document.getElementById('printBtn').addEventListener('click', () => {
+      // Note: printing dialog allows saving as PDF in most browsers
+      window.print();
+    });
+
+    // Download HTML (save current report as .html file)
+    document.getElementById('downloadHtml').addEventListener('click', () => {
+      const content = '<!doctype html>' + document.documentElement.outerHTML;
+      const blob = new Blob([content], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'bao-cao-danangsale-mau.html';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Help text in console for replacing signature/stamp safely
+    console.log('LƯU Ý: Đây là mẫu. Để chèn chữ ký/con dấu chính thức, thay thế phần .sig-box và .stamp-placeholder bằng thẻ <img src="path-to-scan.png"> có ảnh mộc đỏ và chữ ký thật.');
+  </script>
+</body>
+</html>
