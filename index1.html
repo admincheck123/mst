@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng hợp nợ tín dụng đen</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #f4f6fb;
+            margin: 0;
+            padding: 16px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1f2d5a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+            color: #fff;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        td {
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status {
+            color: #e53935;
+            font-weight: 600;
+        }
+
+        .money {
+            font-weight: 600;
+            color: #1b5e20;
+        }
+
+        .summary {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin: 0 0 8px 0;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: #3f51b5;
+        }
+
+        /* Responsive: chuyển bảng thành card trên mobile */
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 14px;
+                border-radius: 12px;
+                background: #fff;
+                box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+                padding: 12px;
+            }
+
+            td {
+                border: none;
+                padding: 6px 0;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #555;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>TỔNG HỢP NỢ TÍN DỤNG ĐEN (12/2025)</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Tên App</th>
+            <th>Số tiền cần trả</th>
+            <th>Ngày tới hạn</th>
+            <th>Trạng thái</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Ngày 29 -->
+        <tr>
+            <td data-label="Tên App">HataVNE</td>
+            <td data-label="Số tiền" class="money">2.600.000đ</td>
+            <td data-label="Ngày tới hạn">29/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Hata GoLoan</td>
+            <td data-label="Số tiền" class="money">2.400.000đ</td>
+            <td data-label="Ngày tới hạn">29/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Cayvang</td>
+            <td data-label="Số tiền" class="money">1.200.000đ</td>
+            <td data-label="Ngày tới hạn">29/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">MaxCash + VinVay</td>
+            <td data-label="Số tiền" class="money">2.000.000đ</td>
+            <td data-label="Ngày tới hạn">29/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+
+        <!-- Ngày 30 -->
+        <tr>
+            <td data-label="Tên App">Money Cat</td>
+            <td data-label="Số tiền" class="money">1.036.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">LamVay</td>
+            <td data-label="Số tiền" class="money">1.800.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Nhanh Đồng</td>
+            <td data-label="Số tiền" class="money">1.500.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Nice Đồng</td>
+            <td data-label="Số tiền" class="money">1.500.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Alo Đồng</td>
+            <td data-label="Số tiền" class="money">1.500.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Đồng May Mắn</td>
+            <td data-label="Số tiền" class="money">1.500.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Đồng Tiền</td>
+            <td data-label="Số tiền" class="money">1.500.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Hi Đồng</td>
+            <td data-label="Số tiền" class="money">1.500.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Dola Credit</td>
+            <td data-label="Số tiền" class="money">1.500.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Funny Đồng</td>
+            <td data-label="Số tiền" class="money">1.500.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Onlien Đồng</td>
+            <td data-label="Số tiền" class="money">1.500.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        <tr>
+            <td data-label="Tên App">Catvat</td>
+            <td data-label="Số tiền" class="money">1.100.000đ</td>
+            <td data-label="Ngày tới hạn">30/12/2025</td>
+            <td data-label="Trạng thái" class="status">Chưa thanh toán</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="summary">
+        <div class="card">
+            <h3>Tổng cần trả ngày 29</h3>
+            <p>8.200.000đ</p>
+        </div>
+        <div class="card">
+            <h3>Tổng cần trả ngày 30</h3>
+            <p>17.436.000đ</p>
+        </div>
+        <div class="card">
+            <h3>TỔNG CỘNG</h3>
+            <p>25.636.000đ</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
